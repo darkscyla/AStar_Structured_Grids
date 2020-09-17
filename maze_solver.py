@@ -24,6 +24,7 @@ if __name__ == "__main__":
         MazeStruct("maze_hex.png", (2, 175), (370, 193)),
         MazeStruct("maze_standard.png", (0, 153), (321, 170)),
         MazeStruct("maze_large.png", (1, 1), (511, 511)),
+        MazeStruct("maze_xl.png", (3, 3), (997, 997)),
     )
 
     for maze in maze_to_solve:
