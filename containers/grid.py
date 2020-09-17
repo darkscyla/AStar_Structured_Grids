@@ -27,7 +27,7 @@ class Grid:
         self.end = end
 
         # We add the boundary of domain to the closed obstacles
-        self.add_boundary()
+        self._add_boundary()
 
         # We add the obstacles to the closed nodes
         self.closed_nodes.update({obstacle: None for obstacle in obstacles})
@@ -77,7 +77,7 @@ class Grid:
         # We mark the end node as closed as well
         self.closed_nodes[curr_vertex.id] = curr_vertex.node
 
-        # We now print the path that led to the solution
+        # We now compute the path that led to the solution
         return self._get_astar_path()
 
     def _add_nodes_to_map(self, nodes_list):
@@ -147,7 +147,7 @@ class Grid:
         self.closed_nodes = {}
         self.sorted_nodes_map = SortedNodes()
 
-    def add_boundary(self):
+    def _add_boundary(self):
         """Adds the boundary to the closed vertices list"""
         self.closed_nodes.update({(x, -1): None for x in range(-1, self.x + 1)})  # S
         self.closed_nodes.update(
