@@ -2,6 +2,7 @@ import cv2
 import os
 import numpy as np
 
+# Local imports
 from collections import namedtuple
 from containers.grid import Grid
 
@@ -21,8 +22,8 @@ if __name__ == "__main__":
         MazeStruct("maze_circular.png", (5, 170), (164, 164)),
         MazeStruct("maze_delta.png", (0, 164), (281, 164)),
         MazeStruct("maze_hex.png", (2, 175), (370, 193)),
-        MazeStruct("maze_standard.png", (0, 153), (321, 170))
-        )
+        MazeStruct("maze_standard.png", (0, 153), (321, 170)),
+    )
 
     for maze in maze_to_solve:
         img = cv2.imread(os.path.join(resources_dir, maze.file_name))
@@ -36,9 +37,9 @@ if __name__ == "__main__":
 
         # Get the points where value is lower than the threshold. Numpy indexes oppositely
         obstalces_tuple = tuple(
-            map(tuple, np.transpose( np.where(gs_img < obstacle_threshold)))
+            map(tuple, np.transpose(np.where(gs_img < obstacle_threshold)))
         )
- 
+
         # Find the shortest path
         print("{}: Computing AStar shortest path...".format(maze.file_name))
 

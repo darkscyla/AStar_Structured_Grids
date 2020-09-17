@@ -1,5 +1,4 @@
 from math import sqrt
-from operator import itemgetter
 
 # Local imports
 from .sorted_nodes import SortedNodes
