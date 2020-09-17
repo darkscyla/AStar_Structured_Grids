@@ -111,7 +111,7 @@ class Grid:
             (vertex[0], vertex[1] - 1): 1.0,  # S
             (vertex[0] - 1, vertex[1] - 1): 1.414,  # SW
             (vertex[0] - 1, vertex[1]): 1.0,  # W
-            (vertex[0] - 1, vertex[1] + 1): 1.0,  # NW
+            (vertex[0] - 1, vertex[1] + 1): 1.414,  # NW
         }
 
         # We remove the closed vertices from the neighbours if any
