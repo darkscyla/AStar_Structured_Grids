@@ -11,7 +11,8 @@ MazeStruct = namedtuple("MazeStruct", "file_name start end")
 if __name__ == "__main__":
     # Properties to change the outputs
     draw_thickness = 1
-    line_color = (0, 0, 255)
+    line_color = (0, 255, 0)
+    visited_color = (128, 128, 0)
 
     obstacle_threshold = 128
 
@@ -25,6 +26,8 @@ if __name__ == "__main__":
         MazeStruct("maze_standard.png", (0, 153), (321, 170)),
         MazeStruct("maze_large.png", (1, 1), (511, 511)),
         MazeStruct("maze_xl.png", (3, 3), (997, 997)),
+        MazeStruct("maze_xxl.png", (740, 510), (417, 510)),
+        MazeStruct("maze_xxl_orig.png", (740, 510), (417, 510)),
     )
 
     for maze in maze_to_solve:
@@ -50,6 +53,15 @@ if __name__ == "__main__":
         print("{}: Done computing".format(maze.file_name))
 
         print("{}: Drawing and saving image...".format(maze.file_name))
+
+        # Draw the visited nodes
+        for pt in (
+            {*my_grid.sorted_nodes_map.keys(), *my_grid.closed_nodes.keys()}
+            .difference(obstalces_tuple)
+            .difference(path)
+        ):
+            cv2.circle(img, (pt[1], pt[0]), 0, visited_color, 1)
+
         # Draw the AStar path
         for pt in path:
             # OpenCV draw functions use reverse numbering
