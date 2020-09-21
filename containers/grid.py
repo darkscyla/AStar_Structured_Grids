@@ -92,10 +92,13 @@ class Grid:
 
     def _compute_heuristic(self, origin):
         """
-        Computes the normal euclidean distance between
-        the origin and the end node
+        Computes the grid distance between the origin and
+        the end node. We can move diagonally or straight
+        along a grid cell. We can better estimate the actual
+        distance using this info
         """
-        return sqrt((origin[0] - self.end[0]) ** 2 + (origin[1] - self.end[1]) ** 2)
+        diff = (abs(origin[0] - self.end[0]), abs(origin[1] - self.end[1]))
+        return 1.4142135623730951 * min(diff) + abs(diff[0] - diff[1])
 
     def _get_neighbours_and_costs(self, vertex: tuple):
         """
@@ -105,13 +108,13 @@ class Grid:
         """
         neighbours = {
             (vertex[0], vertex[1] + 1): 1.0,  # N
-            (vertex[0] + 1, vertex[1] + 1): 1.414,  # NE
+            (vertex[0] + 1, vertex[1] + 1): 1.4142135623730951,  # NE
             (vertex[0] + 1, vertex[1]): 1.0,  # E
-            (vertex[0] + 1, vertex[1] - 1): 1.414,  # SE
+            (vertex[0] + 1, vertex[1] - 1): 1.4142135623730951,  # SE
             (vertex[0], vertex[1] - 1): 1.0,  # S
-            (vertex[0] - 1, vertex[1] - 1): 1.414,  # SW
+            (vertex[0] - 1, vertex[1] - 1): 1.4142135623730951,  # SW
             (vertex[0] - 1, vertex[1]): 1.0,  # W
-            (vertex[0] - 1, vertex[1] + 1): 1.414,  # NW
+            (vertex[0] - 1, vertex[1] + 1): 1.4142135623730951,  # NW
         }
 
         # We remove the closed vertices from the neighbours if any
