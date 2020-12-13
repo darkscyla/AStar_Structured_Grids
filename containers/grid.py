@@ -151,12 +151,15 @@ class Grid:
         self.sorted_nodes_map = SortedNodes()
 
     def _add_boundary(self):
-        """Adds the boundary to the closed vertices list"""
-        self.closed_nodes.update({(x, -1): None for x in range(-1, self.x + 1)})  # S
+        """
+        Adds the boundary to the closed vertices list. OpenCV
+        indexes oppositely
+        """
+        self.closed_nodes.update({(-1, x): None for x in range(-1, self.x + 1)})  # S
         self.closed_nodes.update(
-            {(self.x, y): None for y in range(-1, self.y + 1)}
+            {(y, self.x): None for y in range(-1, self.y + 1)}
         )  # E
         self.closed_nodes.update(
-            {(x, self.y): None for x in range(-1, self.x + 1)}
+            {(self.y, x): None for x in range(-1, self.x + 1)}
         )  # S
-        self.closed_nodes.update({(-1, y): None for y in range(-1, self.y + 1)})  # W
+        self.closed_nodes.update({(y, -1): None for y in range(-1, self.y + 1)})  # W

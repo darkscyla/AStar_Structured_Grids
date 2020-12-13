@@ -36,7 +36,7 @@ if __name__ == "__main__":
 
         # Grayscale image
         gs_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        nx, ny = gs_img.shape
+        ny, nx = gs_img.shape
 
         # Setup the domain
         my_grid = Grid(resolution=(nx, ny))
