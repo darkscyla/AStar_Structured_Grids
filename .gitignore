@@ -1,2 +1,7 @@
 # Directories
 __pycache__
+
+# Private Files
+warehouse.py
+resources/warehouse.png
+results/warehouse.png
