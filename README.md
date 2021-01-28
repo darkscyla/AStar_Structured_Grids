@@ -1,4 +1,4 @@
-# MazeSolver_using_AStar
+# AStar for Structured Grids
 
 An implementation of the A-Star algorithm in pure python. The aim is to show-case an easy to understand implementation of the algorithm. Though the show cased examples are for structured grid, it is pretty easy to make it work for unstructured graph by updating the neighbor search along with their costs
 
