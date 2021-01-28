@@ -1,11 +1,35 @@
-from math import sqrt
-
-# Local imports
+# --- Internal Imports ---
 from .sorted_nodes import SortedNodes
 from .node import Node
 
 
 class Grid:
+    """
+    Implements the A-Star algorithm for structured grids
+
+    ...
+
+    Attributes
+    ----------
+    start : tuple
+        The id of the start node. ID comprises of (row, column) indices
+    end : tuple
+        The id of the end node. ID comprises of (row, column) indices
+    closed_nodes : dict
+        A dictionary contain the closed nodes ids and their node data.
+        A closed node is one that cannot be visited anymore. This may
+        happen if it is an obstacle or we already visited it
+    sorted_nodes_map : SortedNodes
+        A value sorted dict that stores the open nodes. An open node 
+        is one that lies on the current search path, that is it is a
+        potential candidate that may lead to the shortest path
+
+    Methods
+    -------
+    astar(start: tuple, end: tuple, obstacle: list)
+        Given a start and end node along with obstacles, search the
+        domain for the shortest path using A-Star algorithm
+    """
     def __init__(self, resolution: tuple):
         self.x, self.y = resolution
 
@@ -20,6 +44,11 @@ class Grid:
         self.sorted_nodes_map = SortedNodes()
 
     def astar(self, start: tuple, end: tuple, obstacles: list):
+        """
+        Computes the A-Star path given a start and end goal with obstacles.
+        Currently, we automatically add a parameter obstacles for the grid
+        to make sure its remains bounded
+        """
         # We reset the internal containers
         self._reset()
 
@@ -82,7 +111,7 @@ class Grid:
 
     def _add_nodes_to_map(self, nodes_list):
         """
-        Helper function to compute the huristic cost of the nodes
+        Helper function to compute the heuristic cost of the nodes
         """
         for node in nodes_list:
             # node here basically is the key and represents
@@ -127,7 +156,7 @@ class Grid:
     def _get_astar_path(self):
         """
         Traceback through the most efficient neighbours until it
-        reachs the start node
+        reach's the start node
         """
         path = []
         curr_node = self.end

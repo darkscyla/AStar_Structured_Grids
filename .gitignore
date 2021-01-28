@@ -1,5 +1,6 @@
 # Directories
-__pycache__
+__pycache__/
+.vscode/
 
 # Private Files
 warehouse.py

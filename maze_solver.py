@@ -1,12 +1,15 @@
+# --- Internal Imports ---
+from collections import namedtuple
+from containers.grid import Grid
+
+# --- Standard Imports ---
 import cv2
 import os
 import numpy as np
 
-# Local imports
-from collections import namedtuple
-from containers.grid import Grid
 
 MazeStruct = namedtuple("MazeStruct", "file_name start end")
+
 
 if __name__ == "__main__":
     # Properties to change the outputs
@@ -42,14 +45,14 @@ if __name__ == "__main__":
         my_grid = Grid(resolution=(nx, ny))
 
         # Get the points where value is lower than the threshold. Numpy indexes oppositely
-        obstalces_tuple = tuple(
+        obstacles_tuple = tuple(
             map(tuple, np.transpose(np.where(gs_img < obstacle_threshold)))
         )
 
         # Find the shortest path
         print("{}: Computing AStar shortest path...".format(maze.file_name))
 
-        path = my_grid.astar(start=maze.start, end=maze.end, obstacles=obstalces_tuple)
+        path = my_grid.astar(start=maze.start, end=maze.end, obstacles=obstacles_tuple)
 
         print("{}: Done computing".format(maze.file_name))
 
@@ -58,7 +61,7 @@ if __name__ == "__main__":
         # Draw the visited nodes
         for pt in (
             {*my_grid.sorted_nodes_map.keys(), *my_grid.closed_nodes.keys()}
-            .difference(obstalces_tuple)
+            .difference(obstacles_tuple)
             .difference(path)
         ):
             cv2.circle(img, (pt[1], pt[0]), 0, visited_color, 1)

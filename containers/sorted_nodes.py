@@ -1,10 +1,11 @@
+# --- Standard Imports ---
 from sortedcollections import ValueSortedDict
 from collections import namedtuple
 
 
 class SortedNodes(ValueSortedDict):
     """
-    A convinience extension of value sorted dict
+    A convenience extension of value sorted dict
     to allow already added elements to be changed
     """
 
@@ -36,4 +37,7 @@ class SortedNodes(ValueSortedDict):
             self[node_id] = node
 
     def pop_smallest(self):
+        """
+        For the value sorted dict, remove and return the node with the smallest cost
+        """
         return self.NodeWithID(*self.popitem(0))

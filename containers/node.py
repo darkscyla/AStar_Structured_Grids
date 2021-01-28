@@ -1,3 +1,4 @@
+# --- Standard Imports ---
 import math
 
 
@@ -10,7 +11,7 @@ class Node:
     Attributes
     ----------
     distance_heuristic : float
-        The huristic distance of the node from the end node (h cost)
+        The heuristic distance of the node from the end node (h cost)
     distance_from_start : float
         The shortest distance from current node to start node (g cost)
     cost : float
@@ -31,7 +32,7 @@ class Node:
         Parameters
         ----------
         heuristic_cost: float
-            The huristic distance of the current node from the end node
+            The heuristic distance of the current node from the end node
         """
         self.distance_heuristic = heuristic_cost
 
@@ -44,11 +45,14 @@ class Node:
 
     def g_cost(self):
         """
-        Feteches the g cost of the node
+        Fetches the g cost of the node
         """
         return self.dist_from_start
 
     def previous_vertex(self):
+        """
+        Returns the best known neighbour of the current node 
+        """
         return self.prev_vertex
 
     def update_cost(self, vertex: tuple, val: float):
