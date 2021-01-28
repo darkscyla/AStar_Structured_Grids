@@ -55,7 +55,7 @@ class Grid:
         self.start = start
         self.end = end
 
-        # We add the boundary of domain to the closed obstacles
+        # We add the boundary of domain to the closed nodes
         self._add_boundary()
 
         # We add the obstacles to the closed nodes
