@@ -22,7 +22,7 @@ Maze                                    | Solution
 
 ### 786k Nodes
 
-Maze (Credits to [Robot Abbott](https://www.astrolog.org/labyrnth/maze.htm)) | Solution
+Maze (Credits to [Robert Abbott](https://www.astrolog.org/labyrnth/maze.htm)) | Solution
 :-----------------------------------------:|:-----------------------------------------------:
 ![Maze of Theseus](resources/maze_xxl.png) | ![Maze of Theseus Solution](results/maze_xxl.png)
 
